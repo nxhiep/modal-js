@@ -38,20 +38,23 @@ class Modal {
         this.close = this.modal.querySelector('.close');
         this.buttonOk = this.modal.querySelector('.button-ok');
         this.buttonCancel = this.modal.querySelector('.button-cancel');
+        
         this.modal.onclick = (e) => {
             let className = e && e.target ? e.target.className : '';
-            if(className && typeof className === 'string' 
-                && (className.indexOf('hiepnx-modal') > -1 || className.indexOf('close') > -1)){
+            if(className && typeof className === 'string' && className.indexOf('hiepnx-modal') > -1){
                 this.hide();
             }
-            if(className.indexOf('button-ok') > -1){
-                this.options.autoHide && this.hide();
-                this.options.onConfirm && this.options.onConfirm(true);
-            }
-            if(className.indexOf('button-cancel') > -1){
-                this.options.autoHide && this.hide();
-                this.options.onConfirm && this.options.onConfirm(false);
-            }
+        }
+        this.close.onclick = () => {
+            this.hide();
+        }
+        this.buttonCancel.onclick = () => {
+            this.options.autoHide && this.hide();
+            this.options.onConfirm && this.options.onConfirm(false);
+        }
+        this.buttonOk.onclick = () => {
+            this.options.autoHide && this.hide();
+            this.options.onConfirm && this.options.onConfirm(true);
         }
         if(!this.options.sizeAuto){
             this.content.classList.add('size-auto');
@@ -80,14 +83,15 @@ class Modal {
         if(typeof this.options.body === 'string'){
             this.body.innerHTML = this.options.body;
         } else if(typeof this.options.body === 'object'){
-            this.body.innerHTML = this.options.body.outerHTML;
+            this.body.innerHTML = '';
+            this.body.appendChild(this.options.body);
         }
         return this;
     }
 
     center(options) {
         this.modal.classList.add('center');
-        this.show(options);
+        return this.show(options);
     }
 
     hide() {

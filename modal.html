@@ -2,7 +2,8 @@
     <head>  
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script src="modal.min.js"></script>
+        <script src="modal.js"></script>
+        <!-- <script src="modal.min.js"></script> -->
         <link rel="stylesheet" href="modal.css">
         <style>
         </style>
@@ -24,9 +25,23 @@ function showQuestion() {
 }
 
 function showModal() {
-    new Modal({
+    var panel = document.createElement('div');
+    let label = document.createElement('span');
+    label.innerHTML = 'Click here: ';
+    panel.appendChild(label);
+    var buttonTest = document.createElement('button');
+    buttonTest.innerHTML = 'Click here';
+    panel.appendChild(buttonTest);
+    let modal = new Modal({
         title: "Title",
-        body: 'Content'
+        body: panel
     }).show();
+    buttonTest.onclick = function(){
+        alert('Click');
+        modal.hide();
+    }
+    modal.onHide(function(){
+        alert('Hide');
+    });
 }
 </script>
