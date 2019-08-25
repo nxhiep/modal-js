@@ -1,0 +1,115 @@
+@import "mixin";
+.hiepnx-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    justify-content: center;
+    padding-top: 100px;
+    align-items: flex-start;
+    background-color: rgba(0,0,0,0.5);
+    @include flexBox(null);
+
+    .my-modal-content {
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 0px #333;
+    }
+    .my-modal-content.size-auto {
+        min-width: 500px;
+    }
+    .my-modal-header {
+        padding: 10px;
+        justify-content: center;
+        border-bottom: 1px solid #ddd;
+        @include flexBox(null);
+
+        .title {
+            width: 100%;
+            text-align: center;
+            font-weight: 600
+        }
+    }
+    .my-modal-body {
+        padding: 10px;
+    }
+    .my-modal-footer {
+        padding: 10px;
+        justify-content: flex-end;
+        align-items: center;
+        border-top: 1px solid #ddd;
+        @include flexBox(null);
+    }
+    .button-ok,
+    .button-cancel {
+        cursor: pointer;
+        margin-left: 10px;
+        border: 1px solid #ddd;
+        padding: 7px 15px;
+        border-radius: 5px;
+        background-color: white;
+        color: #333;
+        border-color: #333;
+    }
+    .button-ok {
+        background-color: green;
+        color: white;
+        border-color: green;
+    }
+    .close {
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+}
+.hiepnx-modal.center {
+    padding-top: 0px;
+    align-items: center;
+    }
+// notification
+.hiepnx-modal.notification {
+    .content-notification-panel {
+        @include flexBox(null);
+        align-items: center;
+        position: relative;
+    }
+    .icon-panel {
+        width: 100px;
+    }
+    .msg-panel {
+        width: calc(100% - 100px);
+        text-align: left;
+        padding: 10px;
+    }
+    .close-noti {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .hiepnx-modal {
+        .my-modal-content.size-auto {
+            min-width: 768px;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .hiepnx-modal {
+        .my-modal-content.size-auto {
+            min-width: 500px;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .hiepnx-modal {
+        .my-modal-content.size-auto {
+            min-width: calc(100% - 40px);
+        }
+    }
+}

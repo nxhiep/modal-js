@@ -1,0 +1,32 @@
+<html>
+    <head>  
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="modal.min.js"></script>
+        <link rel="stylesheet" href="modal.css">
+        <style>
+        </style>
+    </head>
+    <body>
+        <button onclick="new ShowInfo('ShowInfo')">Open ShowInfo</button>
+        <button onclick="new ShowError('ShowError')">Open ShowError</button>
+        <button onclick="new ShowSuccess('ShowSuccess')">Open ShowSuccess</button>
+        <button onclick="new ShowWarning('ShowWarning')">Open ShowWarning</button>
+        <button onclick="showQuestion()">Open ShowQuestion</button>
+        <button onclick="showModal()">Open Modal</button>
+    </body>
+</html>
+<script>
+function showQuestion() {
+    new ShowQuestion('ShowQuestion', 'X', 'Y', function(result){
+        console.log('ShowQuestion', result);
+    });
+}
+
+function showModal() {
+    new Modal({
+        title: "Title",
+        body: 'Content'
+    }).show();
+}
+</script>
